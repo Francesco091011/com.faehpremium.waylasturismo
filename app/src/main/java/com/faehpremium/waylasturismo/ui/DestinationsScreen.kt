@@ -22,11 +22,13 @@ data class Destination(
     val weather: String,
     val tours: List<String>,
     val comments: List<String>,
+    val lat: Double,
+    val lon: Double,
     val imageLabel: String = "Imagen"
 )
 
 @Composable
-fun DestinationsScreen() {
+fun DestinationsScreen(onNavigateToMap: (Double, Double, String) -> Unit) {
     val destinations = listOf(
         Destination(
             name = "Laguna 69",
@@ -35,6 +37,8 @@ fun DestinationsScreen() {
             weather = "12°C, soleado",
             tours = listOf("Full Day Laguna 69 (desde Huaraz)", "Trekking guiado con transporte y box lunch"),
             comments = listOf("\"Una experiencia inolvidable, paisajes espectaculares.\" - Ana", "\"Requiere buen estado físico, pero vale la pena.\" - Luis"),
+            lat = -9.0033,
+            lon = -77.6133,
             imageLabel = "Imagen Laguna 69"
         ),
         Destination(
@@ -44,6 +48,8 @@ fun DestinationsScreen() {
             weather = "15°C, parcialmente nublado",
             tours = listOf("Tour guiado a Chavín", "Visita arqueológica y cultural"),
             comments = listOf("\"Impresionante historia y arquitectura.\" - Pedro", "\"Un viaje al pasado preincaico.\" - María"),
+            lat = -9.5931,
+            lon = -77.1772,
             imageLabel = "Imagen Chavín"
         ),
         Destination(
@@ -53,6 +59,8 @@ fun DestinationsScreen() {
             weather = "5°C, frío y soleado",
             tours = listOf("Full Day Pastoruri", "Trekking y observación de puyas"),
             comments = listOf("\"Ver el glaciar fue increíble.\" - Sofía", "\"Ideal para fotos y naturaleza.\" - Diego"),
+            lat = -9.8800,
+            lon = -77.2100,
             imageLabel = "Imagen Pastoruri"
         ),
         Destination(
@@ -62,6 +70,8 @@ fun DestinationsScreen() {
             weather = "18°C, soleado",
             tours = listOf("Ciclismo por el cañón", "Tour fotográfico"),
             comments = listOf("\"Aventura y paisajes únicos.\" - Juan", "\"Recomiendo el recorrido en bicicleta.\" - Elena"),
+            lat = -8.9667,
+            lon = -77.7833,
             imageLabel = "Imagen Cañón del Pato"
         )
     )
@@ -114,7 +124,7 @@ fun DestinationsScreen() {
                             Button(onClick = { isAdded = true }) {
                                 Text(if (isAdded) "Agregado" else "Agregar a mi itinerario")
                             }
-                            Button(onClick = { /* TODO: Navegar a mapa */ }) {
+                            Button(onClick = { onNavigateToMap(dest.lat, dest.lon, dest.name) }) {
                                 Text("Ver en mapa")
                             }
                             Button(onClick = { isShared = true }) {

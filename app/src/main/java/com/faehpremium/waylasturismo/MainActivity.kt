@@ -1,8 +1,10 @@
 package com.faehpremium.waylasturismo
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import org.osmdroid.config.Configuration
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -17,6 +19,14 @@ import com.faehpremium.waylasturismo.navigation.setupNavGraph
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Configuración para OpenStreetMap (OsmDroid)
+        Configuration.getInstance().load(
+            applicationContext,
+            PreferenceManager.getDefaultSharedPreferences(applicationContext)
+        )
+        Configuration.getInstance().userAgentValue = packageName
+        
         setContent {
             WaylasTurismoApp()
         }
