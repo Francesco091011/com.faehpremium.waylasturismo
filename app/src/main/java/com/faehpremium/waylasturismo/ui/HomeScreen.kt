@@ -34,6 +34,8 @@ fun HomeScreen(navController: NavHostController) {
         MenuOption("Arqueología", "archaeology", Icons.Default.AccountBalance),
         MenuOption("Aventura", "adventure_sports", Icons.Default.Hiking),
         MenuOption("Tipo de Cambio", "exchange_rate", Icons.Default.CurrencyExchange),
+        MenuOption("Historia", "history", Icons.Default.HistoryEdu),
+        MenuOption("Acerca de", "about", Icons.Default.Help),
         MenuOption("Tips", "tips", Icons.Default.Info)
     )
 
