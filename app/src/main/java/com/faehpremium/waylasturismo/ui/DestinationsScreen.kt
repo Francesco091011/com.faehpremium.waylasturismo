@@ -1,5 +1,6 @@
 package com.faehpremium.waylasturismo.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -10,10 +11,14 @@ import androidx.compose.material.icons.filled.ExpandMore
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.faehpremium.waylasturismo.R
 
 data class Destination(
     val name: String,
@@ -24,7 +29,8 @@ data class Destination(
     val comments: List<String>,
     val lat: Double,
     val lon: Double,
-    val imageLabel: String = "Imagen"
+    val imageLabel: String = "Imagen",
+    val imageRes: Int
 )
 
 @Composable
@@ -39,7 +45,8 @@ fun DestinationsScreen(onNavigateToMap: (Double, Double, String) -> Unit) {
             comments = listOf("\"Una experiencia inolvidable, paisajes espectaculares.\" - Ana", "\"Requiere buen estado físico, pero vale la pena.\" - Luis"),
             lat = -9.0033,
             lon = -77.6133,
-            imageLabel = "Imagen Laguna 69"
+            imageLabel = "Imagen Laguna 69",
+            imageRes = R.drawable.laguna69
         ),
         Destination(
             name = "Chavín de Huántar",
@@ -50,7 +57,8 @@ fun DestinationsScreen(onNavigateToMap: (Double, Double, String) -> Unit) {
             comments = listOf("\"Impresionante historia y arquitectura.\" - Pedro", "\"Un viaje al pasado preincaico.\" - María"),
             lat = -9.5931,
             lon = -77.1772,
-            imageLabel = "Imagen Chavín"
+            imageLabel = "Imagen Chavín",
+            imageRes = R.drawable.chavinhuantar
         ),
         Destination(
             name = "Nevado Pastoruri",
@@ -61,7 +69,8 @@ fun DestinationsScreen(onNavigateToMap: (Double, Double, String) -> Unit) {
             comments = listOf("\"Ver el glaciar fue increíble.\" - Sofía", "\"Ideal para fotos y naturaleza.\" - Diego"),
             lat = -9.8800,
             lon = -77.2100,
-            imageLabel = "Imagen Pastoruri"
+            imageLabel = "Imagen Pastoruri",
+            imageRes = R.drawable.nevadopastoruri
         ),
         Destination(
             name = "Cañón del Pato",
@@ -72,7 +81,8 @@ fun DestinationsScreen(onNavigateToMap: (Double, Double, String) -> Unit) {
             comments = listOf("\"Aventura y paisajes únicos.\" - Juan", "\"Recomiendo el recorrido en bicicleta.\" - Elena"),
             lat = -8.9667,
             lon = -77.7833,
-            imageLabel = "Imagen Cañón del Pato"
+            imageLabel = "Imagen Cañón del Pato",
+            imageRes = R.drawable.canonpato
         )
     )
 
@@ -94,14 +104,14 @@ fun DestinationsScreen(onNavigateToMap: (Double, Double, String) -> Unit) {
             ) {
                 Column(modifier = Modifier.padding(12.dp)) {
                     Row(verticalAlignment = Alignment.CenterVertically) {
-                        Surface(
-                            modifier = Modifier.size(80.dp),
-                            color = Color.LightGray
-                        ) {
-                            Box(contentAlignment = Alignment.Center) {
-                                Text(dest.imageLabel, color = Color.DarkGray, fontSize = 12.sp)
-                            }
-                        }
+                        Image(
+                            painter = painterResource(id = dest.imageRes),
+                            contentDescription = dest.imageLabel,
+                            modifier = Modifier
+                                .size(80.dp)
+                                .clip(MaterialTheme.shapes.small),
+                            contentScale = ContentScale.Crop
+                        )
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(dest.name, fontSize = 22.sp, fontWeight = FontWeight.Bold)
