@@ -59,6 +59,9 @@ fun setupNavGraph(navController: NavHostController) {
         }
         composable("calendar") { CalendarScreen() }
         composable("tips") { TipsScreen() }
+        composable("shop") { ShopScreen() }
+        composable("marketplace") { MarketplaceScreen() }
+        composable("premium") { PremiumScreen() }
         composable("gastronomy") { GastronomyScreen() }
         composable("archaeology") { ArchaeologyScreen() }
         composable("adventure_sports") { AdventureSportsScreen() }

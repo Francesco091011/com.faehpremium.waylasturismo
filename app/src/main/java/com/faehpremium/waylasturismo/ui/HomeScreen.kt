@@ -36,6 +36,9 @@ fun HomeScreen(navController: NavHostController) {
         MenuOption("Tipo de Cambio", "exchange_rate", Icons.Default.CurrencyExchange),
         MenuOption("Historia", "history", Icons.Default.HistoryEdu),
         MenuOption("Tips", "tips", Icons.Default.Info),
+        MenuOption("Tienda Pro", "shop", Icons.Default.ShoppingBag),
+        MenuOption("Marketplace", "marketplace", Icons.Default.Handshake),
+        MenuOption("Membresía VIP", "premium", Icons.Default.WorkspacePremium),
         MenuOption("Acerca de", "about", Icons.Default.Help)
     )
 
